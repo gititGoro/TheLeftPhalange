@@ -2,6 +2,7 @@ import {CommandResult} from './Command'
 import {PlaneCommand} from './PlaneCommand'
 import {PlaneReceiver} from '../EventQueues/PlaneQueue'
 import {Plane, PlaneSize} from '../Types/Plane'
+import {NumberHelper} from '../Utils'
 
 class CreateSmallPlane extends PlaneCommand {
 
@@ -13,15 +14,15 @@ class CreateSmallPlane extends PlaneCommand {
 
     execute(): CommandResult {
 
-        let bigPlanes = [PlaneSize.lightPassenger, PlaneSize.fixedWing] // repeat to give more weight to jumbo
-        let randomIndex = Math.random() * bigPlanes.length;
+        let smallPlanes = [PlaneSize.lightPassenger, PlaneSize.fixedWing] // repeat to give more weight to jumbo
+        let randomIndex = NumberHelper.randomInt(smallPlanes.length, 0);
         let plane: Plane = {
-            size: bigPlanes[randomIndex],
+            size: smallPlanes[randomIndex],
             distanceFromTakeoff: 500,
             revenue: 300
         };
 
-        if (bigPlanes[randomIndex] == PlaneSize.lightPassenger) {
+        if (smallPlanes[randomIndex] == PlaneSize.lightPassenger) {
             plane.revenue = 100;
         }
         this.queue.PushPlane(plane)

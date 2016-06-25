@@ -2,6 +2,7 @@ import {CommandResult} from './Command'
 import {PlaneCommand} from './PlaneCommand'
 import {PlaneReceiver} from '../EventQueues/PlaneQueue'
 import {Plane, PlaneSize} from '../Types/Plane'
+import {NumberHelper} from '../Utils'
 
 class CreateBigPlane extends PlaneCommand {
 
@@ -14,7 +15,7 @@ class CreateBigPlane extends PlaneCommand {
     execute(): CommandResult {
 
         let bigPlanes = [PlaneSize.A380, PlaneSize.jumboJet, PlaneSize.jumboJet] // repeat to give more weight to jumbo
-        let randomIndex = Math.random() * bigPlanes.length;
+        let randomIndex = NumberHelper.randomInt(bigPlanes.length, 0);
         let plane: Plane = {
             size: bigPlanes[randomIndex],
             distanceFromTakeoff: 500,

@@ -8,6 +8,7 @@ enum PlaneSize {
 }
 
 interface Plane {
+    id?: number,
     size: PlaneSize,
     distanceFromTakeoff: number,
     revenue: number
