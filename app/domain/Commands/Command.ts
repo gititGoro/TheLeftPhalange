@@ -1,7 +1,7 @@
 
 interface CommandResult {
     success: boolean;
-    retyAttempts: number //if zero, only try command once
+    retry: boolean
 }
 
 abstract class Command {

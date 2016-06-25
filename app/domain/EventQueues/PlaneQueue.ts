@@ -30,4 +30,6 @@ class PlaneQueue implements PlaneReceiver, PlaneServer {
     }
 }
 
+export {PlaneServer, PlaneReceiver}
+
 //add accessibility interfaces
