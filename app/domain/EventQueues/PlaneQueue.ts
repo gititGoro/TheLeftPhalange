@@ -11,11 +11,13 @@ interface PlaneReceiver {
 }
 
 interface PlaneServer {
-    PopPlane(): PlaneResult
+    PopPlane(): PlaneResult;
+    PendingTakeOff(): boolean;
 }
 
 interface PlaneModifier {
-    AlterPosition(planeId: number, distanceDelta): boolean
+    AlterPosition(planeId: number, distanceDelta: number): boolean
+    AdvancePlanes(distanceDelta: number): void
 }
 
 
@@ -31,6 +33,9 @@ class PlaneQueue implements PlaneReceiver, PlaneServer, PlaneModifier {
     }
 
     public PopPlane(): PlaneResult {
+        this.planes = this.planes.sort((leftPlane, rightPlane) => {
+            return leftPlane.distanceFromTakeoff - rightPlane.distanceFromTakeoff;
+        });
         if (this.planes.length > 0)
             return { newPlane: this.planes.pop(), result: true };
         return { newPlane: null, result: false };
@@ -45,6 +50,20 @@ class PlaneQueue implements PlaneReceiver, PlaneServer, PlaneModifier {
             }
         });
         return found;
+    }
+
+    public AdvancePlanes(distanceDelta: number): void {
+        for (let i = 0; i < this.planes.length; i++) {
+            this.AlterPosition(this.planes[i].id, distanceDelta);
+        }
+    }
+
+    public PendingTakeOff(): boolean {
+        let planesToTakeOff: Plane[] = this.planes.filter((plane) => {
+            return plane.distanceFromTakeoff <= 0;
+        });
+
+        return planesToTakeOff.length > 0;
     }
 
     private GetNextId(): number {
@@ -64,6 +83,6 @@ class PlaneQueue implements PlaneReceiver, PlaneServer, PlaneModifier {
 }
 
 
-export {PlaneServer, PlaneReceiver, PlaneModifier}
+export {PlaneServer, PlaneReceiver, PlaneModifier, PlaneQueue}
 
 //add accessibility interfaces

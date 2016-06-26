@@ -1,6 +1,10 @@
 class NumberHelper {
     public static randomInt(range: number, offset: number): number {
-        return parseInt((Math.random() * range + offset).toFixed(0));
+        return NumberHelper.toInt((Math.random() * range + offset));
+    }
+
+    public static toInt(number: number): number {
+        return parseInt((number).toFixed(0));
     }
 }
 
