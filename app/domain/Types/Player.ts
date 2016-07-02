@@ -3,4 +3,4 @@ export interface Player {
     revenue: number,
     name: string,
     id: number
-}
+};

@@ -46,7 +46,7 @@ export class RunwayPipeLine {
                     this.player.revenue += readyTaxi.plane.revenue;
                 }
             }
-        }, 1000);
+        }, 1000)
     }
 
 }
