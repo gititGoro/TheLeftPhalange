@@ -4,7 +4,7 @@ export class CommandQueue {
     private queue: Command[];
     public errorLog: string[];
 
-    public Length():number{
+    public Length(): number {
         return this.queue.length;
     }
 
