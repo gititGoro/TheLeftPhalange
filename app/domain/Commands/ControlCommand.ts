@@ -16,6 +16,6 @@ class ControlCommand extends Command {
             success: shiftResult,
             retry: false
         };
-         return result;
+        return result;
     }
 }
