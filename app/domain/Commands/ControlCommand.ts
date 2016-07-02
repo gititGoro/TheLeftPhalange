@@ -2,7 +2,7 @@ import {Command, CommandResult} from './Command'
 import {PlaneModifier} from '../EventQueues/PlaneQueue'
 
 
-class ControlCommand extends Command {
+export class ControlCommand extends Command {
 
     constructor(private planeQueue: PlaneModifier,
         private delta: number,
