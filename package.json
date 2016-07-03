@@ -1,7 +1,10 @@
 {
-  "name": "angular2-quickstart",
+  "name": "the-left-phalange",
   "version": "1.0.0",
   "scripts": {
+    "build-game-css": "node-sass --include-path app app/components/game/**.scss app/components/game/game.component.css",
+    "watch-all": "tsc && concurrently \"npm run watch-game-css\" \"npm run tsc:w\"",
+    "watch-game-css": "nodemon -e scss -x \"npm run build-game-css\"",
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
@@ -25,8 +28,8 @@
     "core-js": "^2.4.0",
     "gulp-concat": "^2.6.0",
     "gulp-typescript": "^2.13.6",
-    "merge2": "^1.0.2",
     "node-sass": "^3.8.0",
+    "nodemon": "^1.9.2",
     "reflect-metadata": "^0.1.3",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27",
