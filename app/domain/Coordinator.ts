@@ -7,7 +7,7 @@ import {AdvancePlaneCommand} from './Commands/AdvancePlaneCommand'
 import {AnimateTakeOffCommand} from './Commands/AnimateTakeOffCommand'
 import {NumberHelper} from './Utils'
 
-class Mediator {
+export class Coordinator {
     private speed: number;
     private commandQueueIntervalId: NodeJS.Timer;
     private planeIntervalId: NodeJS.Timer;
@@ -21,11 +21,12 @@ class Mediator {
         private player: Player) {
     }
 
-    public Start(speed: number, difficulty: number): void {
+    public Start(speed: number, difficulty: number): boolean {
         this.speed = speed;
         this.StartCommandQueueProductionLine();
         this.StartPlaneGenerator(difficulty);
         this.StartPlaneMover();
+        return true;
     }
 
     public Stop(speed: number): void {
@@ -40,14 +41,14 @@ class Mediator {
             while (this.commandQueue.Length() > 0) {
                 let result: boolean = this.commandQueue.ExecuteNextCommand();
             }
-        }, 5000 * this.speed);
+        }, 1000 * this.speed);
     }
 
     private StartPlaneGenerator(difficulty: number) {
-        let planeBag: PlaneCommand[];
+        let planeBag: PlaneCommand[] = [];
         difficulty = Math.min(Math.max(0, difficulty), 10);
         let smallPlaneCount = 20 - difficulty;
-        let mediumPlaneCount = NumberHelper.toInt(difficulty / 3 * 2)
+        let mediumPlaneCount = NumberHelper.toInt(difficulty / 3 * 2);
         let bigPlaneCount = 20 - smallPlaneCount - mediumPlaneCount;
 
         for (let i: number = 0; i < smallPlaneCount; i++) {

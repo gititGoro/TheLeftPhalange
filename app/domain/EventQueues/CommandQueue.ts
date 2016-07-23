@@ -1,8 +1,8 @@
 import {Command} from '../Commands/Command'
 
 export class CommandQueue {
-    private queue: Command[];
-    public errorLog: string[];
+    private queue: Command[] = [];
+    public errorLog: string[] = [];
 
     public Length(): number {
         return this.queue.length;

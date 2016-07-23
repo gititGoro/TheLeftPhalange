@@ -8,10 +8,34 @@
     <script src="../../node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
     <script src="../../node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
     <script src="../../node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
-    <script src="domain.spec.js"></script>
+
 </head>
 
 <body>
+
+    <!-- #1. add the system.js library -->
+    <script src="../../node_modules/systemjs/dist/system.src.js"></script>
+
+    <script>
+    var baseUrl = '../../';
+      System.config({
+        baseURL: baseUrl,
+        defaultJSExtensions: true,
+        format:'cjs'
+    });
+
+    // #3. Import the spec file explicitly
+
+    System.import('app/domain.tests/domain.spec')
+
+
+      // #4. wait for all imports to load ...
+      //     then re-execute `window.onload` which
+      //     triggers the Jasmine test-runner start
+      //     or explain what went wrong.
+      .then(window.onload)
+      .catch(console.error.bind(console));
+  </script>
 </body>
 
 </html>
