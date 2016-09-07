@@ -27,14 +27,19 @@
     // #3. Import the spec file explicitly
 //'app/domain.tests/Commands.tests/AdvancePlaneCommand.spec'
     System.import('app/domain.tests/domain.spec') // TODO: GET THIS TO WORK FOR ADVANCEPLANECOMMAND.SPEC
+    .then(System.import('app/domain.tests/Commands.tests/AdvancePlaneCommand.spec'))
+
+
+      .then(window.onload)
+      .catch(console.error.bind(console));
+     // TODO: GET THIS TO WORK FOR ADVANCEPLANECOMMAND.SPEC
 
 
       // #4. wait for all imports to load ...
       //     then re-execute `window.onload` which
       //     triggers the Jasmine test-runner start
       //     or explain what went wrong.
-      .then(window.onload)
-      .catch(console.error.bind(console));
+ 
   </script>
 </body>
 
