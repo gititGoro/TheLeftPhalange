@@ -1,1 +1,0 @@
-//TODO: delete domain.spec.ts, implement coordinator tests, unit test each command and event queue
