@@ -3,6 +3,9 @@
     {{title}}
   </div>
   <div id="taxi-tile-holder">
-    <plane-taxi-tile></plane-taxi-tile>
+    <div id="taxi-column">
+        <plane-taxi-tile *ngFor = "let index of array" [top]= "index">
+        </plane-taxi-tile>
+    </div>
   </div>
 </h1>
