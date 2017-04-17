@@ -6,11 +6,13 @@ import {DragulaModule} from 'ng2-dragula/components/dragular.module';
 
 import { AppComponent } from './app.component';
 import { PlaneTaxiTileComponent } from './plane-taxi-tile/plane-taxi-tile.component';
+import { PlaneTaxiPipelineComponent } from './plane-taxi-pipeline/plane-taxi-pipeline.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlaneTaxiTileComponent
+    PlaneTaxiTileComponent,
+    PlaneTaxiPipelineComponent
   ],
   imports: [
     BrowserModule,
