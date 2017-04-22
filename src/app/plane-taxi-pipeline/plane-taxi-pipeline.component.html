@@ -1,3 +1,6 @@
-<p>
-  plane-taxi-pipeline works!
-</p>
+  <div id="taxi-tile-holder">
+    <div id="taxi-column">
+        <plane-taxi-tile *ngFor = "let index of array" [top]= "index">
+        </plane-taxi-tile>
+    </div>
+  </div>
